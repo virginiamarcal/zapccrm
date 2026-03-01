@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production
+dist/
+build/
+out/
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# AIOS Runtime
+.aios/logs/
+.aios/handoffs/
+.aios/cache/
+.aios/temp/
+node_modules/.aios-cache/
+
+# Git hooks
+.git/hooks/pre-push
+.git/hooks/pre-commit
+
+# Temporary
+*.tmp
+.claude/session-state.json

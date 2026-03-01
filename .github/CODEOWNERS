@@ -1,0 +1,20 @@
+# CODEOWNERS — Wave 2 ZapCRM
+
+# Core infrastructure
+.aios-core/ @devops
+.github/ @devops
+package.json @devops
+
+# Frontend
+packages/ui/ @architect
+packages/web/ @architect
+
+# Backend/API
+packages/api/ @architect
+packages/database/ @architect
+
+# Documentation
+docs/ @pm @po
+
+# Tests
+tests/ @qa
