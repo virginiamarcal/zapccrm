@@ -1,0 +1,71 @@
+# Docker MCP Toolkit Configuration for Wave 2 ZapCRM
+
+version: "1.0"
+project: "zapccrm"
+
+mcps:
+  # Essential: EXA - Web Search
+  exa:
+    enabled: true
+    description: "Web search and research for market analysis"
+    category: "research"
+    apiKeyRequired: false  # Free tier available
+    commands:
+      - web_search
+      - get_news
+      - find_similar
+    setup: |
+      npm install -g docker-mcp-toolkit
+      docker mcp add exa
+    docs: "https://exa.ai/docs"
+    
+  # Essential: Context7 - Library Documentation
+  context7:
+    enabled: true
+    description: "API documentation and library lookup"
+    category: "development"
+    apiKeyRequired: false  # Free for public libraries
+    commands:
+      - resolve_library_id
+      - get_library_docs
+      - search_examples
+    setup: |
+      docker mcp add context7
+    docs: "https://context7.io/docs"
+    
+  # Optional: Apify - Web Scraping
+  apify:
+    enabled: false
+    description: "Web scraping, social media data, automation"
+    category: "data-collection"
+    apiKeyRequired: true  # Requires Apify account
+    setupRequired: "Configure API token before enabling"
+    commands:
+      - search_actors
+      - call_actor
+      - get_results
+    docs: "https://apify.com/docs"
+    priority: "low"  # Optional for Wave 2
+
+# Docker Configuration
+docker:
+  host: "localhost"
+  port: 5000
+  registry: "mcps"
+  network: "aios-net"
+  
+# Security
+secrets:
+  storageLocation: "~/.docker/mcp/secrets"
+  encryptionEnabled: true
+  
+# Logging
+logging:
+  level: "info"
+  directory: ".aios/mcp-logs"
+  
+# Health Check
+healthCheck:
+  enabled: true
+  interval: "60s"
+  timeout: "10s"

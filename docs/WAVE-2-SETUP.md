@@ -117,7 +117,7 @@ gh pr merge
 - [Supabase Setup](./infrastructure/supabase-setup.md)
 - [Stripe Setup](./infrastructure/stripe-setup.md)
 - [MCP Setup](./infrastructure/mcp-setup.md)
-- [AIOS Development Guide](./CLAUDE.md)
+- [AIOS Development Guide](../CLAUDE.md)
 
 ## 📞 Support
 
