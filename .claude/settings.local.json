@@ -1,0 +1,61 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(/c/Users/Samsung/zapccrm/.gitignore:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh api:*)",
+      "Bash(gh repo:*)",
+      "Bash(__NEW_LINE_774800d322abfa45__ cat:*)",
+      "Bash(__NEW_LINE_996ee00b082af2d5__ mkdir:*)",
+      "Bash(__NEW_LINE_7e50398649d3a6b1__ cat:*)",
+      "Bash(__NEW_LINE_895c5f4c4abd6bb8__ mkdir:*)",
+      "Bash(__NEW_LINE_f3e15f49e33f8643__ mkdir:*)",
+      "Bash(__NEW_LINE_58a10f6c16044493__ mkdir:*)",
+      "Bash(__NEW_LINE_4a90be5236712db5__ cat:*)",
+      "Bash(test:*)",
+      "Bash(xargs echo:*)",
+      "Bash(docker mcp:*)",
+      "Bash(/c/Users/Samsung/zapccrm/docs/MCP-CATALOG.md:*)",
+      "Bash(/c/Users/Samsung/zapccrm/.aios/project-status/README.md:*)",
+      "Bash(/c/Users/Samsung/zapccrm/.mcp/docker-mcp-config.yaml:*)",
+      "Bash(/c/Users/Samsung/zapccrm/docs/infrastructure/docker-mcp-quickstart.md:*)",
+      "Bash(/c/Users/Samsung/zapccrm/docs/WORKTREE-GUIDE.md:*)",
+      "Bash(/tmp/handoff-devops-to-dev.yaml:*)",
+      "Bash(/c/Users/Samsung/zapccrm/supabase/migrations/20260301010000_add_organizations_table.sql:*)",
+      "Bash(/c/Users/Samsung/zapccrm/supabase/migrations/20260301020000_add_organization_id_to_tables.sql:*)",
+      "Bash(/c/Users/Samsung/zapccrm/docs/runbooks/rollback-multi-tenant.md:*)",
+      "Bash(/c/Users/Samsung/zapccrm/supabase/migrations/20260301030000_migrate_data_to_organizations.sql:*)",
+      "Bash(npm:*)",
+      "Bash(wsl bash:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "browser",
+    "context7",
+    "desktop-commander"
+  ],
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\\\Users\\\\Samsung\\\\zapccrm\\\\.claude\\\\hooks\\\\precompact-session-digest.cjs\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\\\Users\\\\Samsung\\\\zapccrm\\\\.claude\\\\hooks\\\\synapse-engine.cjs\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
