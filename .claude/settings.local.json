@@ -29,7 +29,12 @@
       "Bash(npm:*)",
       "Bash(wsl bash:*)",
       "Bash(wc:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(do echo:*)",
+      "Bash(grep ^Status::*)",
+      "Bash(head:*)",
+      "Bash(git:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

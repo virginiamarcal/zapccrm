@@ -1,0 +1,47 @@
+schema: 1
+story: '3.2'
+gate: FAIL
+status_reason: 'Story not implemented - blocked by 3.1 foundation and no @dev implementation. Cannot validate acceptance criteria without code.'
+reviewer: 'Quinn'
+updated: '2026-03-01T03:30:00Z'
+top_issues:
+  - id: 'REQ-001'
+    severity: high
+    finding: 'No implementation files created - components/inbox/quick-actions.tsx, reply-input.tsx, assign-dropdown.tsx, create-task-modal.tsx, quick-actions-service.ts missing'
+    suggested_action: '@dev must implement Phase 3 after 3.1 foundation is complete'
+  - id: 'BLOCKED-001'
+    severity: high
+    finding: 'Blocked by Story 3.1 (dependency not met) - cannot implement quick actions without inbox layout foundation'
+    suggested_action: 'Story 3.1 must be PASS before 3.2 implementation can proceed'
+  - id: 'TEST-001'
+    severity: high
+    finding: 'No test files - tests/inbox/quick-actions.test.tsx not created'
+    suggested_action: 'Create tests for quick-action buttons, reply auto-greeting, assign dropdown, task modal, mark done, and sub-1s send latency'
+  - id: 'CODE-001'
+    severity: high
+    finding: 'No code review possible'
+    suggested_action: 'Complete implementation phase before review'
+  - id: 'PERF-001'
+    severity: high
+    finding: 'No latency testing possible - AC6 requires <1s send verification'
+    suggested_action: 'Implement QStash integration and test with 100+ concurrent sends'
+  - id: 'AC-001'
+    severity: high
+    finding: 'Cannot verify 6 AC without implementation'
+    suggested_action: 'Verify: hover buttons (Reply/Assign/Create Task/Mark Done), auto-greeting, team member dropdown, task modal, done transition, <1s send'
+waiver: { active: false }
+gate_metadata:
+  7_point_gate:
+    code_review: FAIL
+    unit_tests: FAIL
+    acceptance_criteria: FAIL
+    no_regressions: N/A
+    performance: N/A
+    security: N/A
+    documentation: N/A
+  blockers:
+    - phase: 'Phase 3.2 (@dev implementation)'
+    - dependency: 'Story 3.1 not PASS'
+    - reason: '8 story points not yet delivered'
+  next_action: 'RETURN TO @dev - Complete Phase 3 after 3.1 PASS'
+  expected_next_gate: 'After 3.1 complete: implement 3.2, then QA gate with latency testing'
