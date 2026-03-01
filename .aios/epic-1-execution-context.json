@@ -1,0 +1,54 @@
+{
+  "epic_id": "epic-1-multi-tenant-foundations",
+  "execution_mode": "yolo",
+  "parallel_stories": [
+    {
+      "story_id": "1.2",
+      "title": "RLS Policies Complete",
+      "status": "Ready",
+      "complexity": 10,
+      "description": "Implement Row Level Security policies across 38 tables",
+      "acceptance_criteria": 6,
+      "blocked_by": ["1.1"]
+    },
+    {
+      "story_id": "1.3",
+      "title": "Multi-Org Auth e Invite System",
+      "status": "Ready",
+      "complexity": 8,
+      "description": "Implement auth & team invite flow with email",
+      "acceptance_criteria": 6,
+      "blocked_by": ["1.1"]
+    }
+  ],
+  "sequential_after_1_3": [
+    {
+      "story_id": "1.4",
+      "title": "Tenant Detection Middleware",
+      "status": "Ready",
+      "complexity": 6,
+      "description": "Auto-detect org from header/cookie/query param",
+      "acceptance_criteria": 5,
+      "blocked_by": ["1.1", "1.3"]
+    },
+    {
+      "story_id": "1.5",
+      "title": "Super Admin Dashboard",
+      "status": "Ready",
+      "complexity": 8,
+      "description": "Super admin view with metrics and impersonation",
+      "acceptance_criteria": 5,
+      "blocked_by": ["1.1", "1.3", "1.4"]
+    }
+  ],
+  "coderabbit_config": {
+    "mode": "self_healing",
+    "max_iterations": 2,
+    "severity_filter": ["CRITICAL", "HIGH"]
+  },
+  "git_info": {
+    "branch": "master",
+    "remote": "https://github.com/virginiamarcal/zapccrm.git",
+    "last_commit": "584309b chore: add AIOS framework, project config, and story artifacts"
+  }
+}
