@@ -1,0 +1,195 @@
+---
+epic_id: 2
+epic_title: "Integração WhatsApp↔CRM"
+epic_status: "InProgress"
+execution_mode: "yolo"
+orchestration_date: "2026-03-01"
+
+# Orchestration Plan (Wave-based parallel development)
+waves:
+  # Wave 1: Bridge Foundation (sequential: 2.1 is dependency)
+  wave_1:
+    name: "Bridge Foundation"
+    parallel: false
+    stories:
+      - story_id: "2.1"
+        title: "Bridge Service Architecture"
+        status: "Ready"
+        complexity: "10 pts"
+        blocked_by: ["1.1"]  # Story 1.1 complete ✅
+        assignments:
+          sm: "create"
+          dev: "implement"
+          qa: "validate"
+        trigger_next: true  # Unblock Story 2.2
+
+  # Wave 2: Contact Sync (parallel: 2.2-2.3 independent after 2.1)
+  wave_2:
+    name: "Contact & Activity Sync"
+    parallel: true
+    stories:
+      - story_id: "2.2"
+        title: "Contato WhatsApp → Contact CRM"
+        status: "Ready"
+        complexity: "8 pts"
+        blocked_by: ["2.1"]
+        assignments:
+          sm: "create"
+          dev: "implement"
+          qa: "validate"
+
+      - story_id: "2.3"
+        title: "Atividade WhatsApp → Activity Timeline"
+        status: "Ready"
+        complexity: "7 pts"
+        blocked_by: ["2.1"]
+        assignments:
+          sm: "create"
+          dev: "implement"
+          qa: "validate"
+
+  # Wave 3: Deal Automation (parallel: 2.4-2.5 independent after Wave 2)
+  wave_3:
+    name: "Deal & Automation"
+    parallel: true
+    stories:
+      - story_id: "2.4"
+        title: "Conversa WhatsApp → Deal CRM"
+        status: "Ready"
+        complexity: "9 pts"
+        blocked_by: ["2.2"]
+        assignments:
+          sm: "create"
+          dev: "implement"
+          qa: "validate"
+
+      - story_id: "2.5"
+        title: "Automação WhatsApp (Templates + Workflows)"
+        status: "Ready"
+        complexity: "8 pts"
+        blocked_by: ["2.4"]
+        assignments:
+          sm: "create"
+          dev: "implement"
+          qa: "validate"
+
+# Summary
+execution_summary:
+  total_stories: 5
+  total_story_points: 42
+  wave_count: 3
+  parallel_opportunities: "2.2-2.3 (Wave 2) + 2.4-2.5 (Wave 3)"
+  estimated_duration: "6-8 dev cycles"
+  quality_gates_required: 7
+  final_reviewers:
+    - qa: "7-point gate per story"
+    - devops: "pre-push quality validation"
+    - pm: "epic completion verification"
+
+# Delegation Schedule (YOLO Mode)
+delegation_schedule:
+  phase_1:
+    agent: "@sm"
+    task: "create-stories"
+    mode: "YOLO"
+    stories: [2.1, 2.2, 2.3, 2.4, 2.5]
+    expected_duration: "30 min"
+    action: "Batch create all 5 stories from Epic 2 context"
+
+  phase_2:
+    agent: "@dev"
+    task: "implement-wave-1"
+    mode: "YOLO"
+    stories: [2.1]
+    parallel_waves: "none"
+    expected_duration: "2-3 cycles"
+    action: "Implement Story 2.1 (Bridge foundation)"
+    next_trigger: "On 2.1 PASS → unlock Wave 2"
+
+  phase_3:
+    agent: "@dev"
+    task: "implement-wave-2"
+    mode: "YOLO"
+    stories: [2.2, 2.3]
+    parallel_waves: "true"
+    expected_duration: "2-3 cycles per story"
+    action: "Parallel implement Stories 2.2 & 2.3"
+    next_trigger: "On both PASS → unlock Wave 3"
+
+  phase_4:
+    agent: "@dev"
+    task: "implement-wave-3"
+    mode: "YOLO"
+    stories: [2.4, 2.5]
+    parallel_waves: "true"
+    expected_duration: "2-3 cycles per story"
+    action: "Parallel implement Stories 2.4 & 2.5"
+    next_trigger: "On both PASS → @qa validates"
+
+  phase_5:
+    agent: "@qa"
+    task: "qa-gate-all"
+    mode: "YOLO"
+    stories: [2.1, 2.2, 2.3, 2.4, 2.5]
+    expected_duration: "30 min (parallel review)"
+    action: "7-point quality gate on each story"
+    gate_decision: "PASS/CONCERNS → approve for push"
+
+  phase_6:
+    agent: "@devops"
+    task: "final-push"
+    mode: "auto"
+    stories: [2.1, 2.2, 2.3, 2.4, 2.5]
+    expected_duration: "5 min"
+    action: "Run pre-push gates + git push to origin/master"
+    final_status: "Epic 2 COMPLETE"
+
+# YOLO Mode Configuration
+yolo_config:
+  mode: "autonomous"
+  interaction_prompts: "zero"
+  approval_gates: "automatic pass if AC met"
+  quality_baseline: "100% AC coverage minimum"
+  override_conflicts: "auto-resolve favoring story requirements"
+  max_iterations: "per-story decision boundaries"
+  error_handling: "escalate to human if unrecoverable"
+
+# Status Tracking
+execution_status:
+  current_wave: "COMPLETE"
+  current_story: "ALL_DONE"
+  stories_created: 5
+  stories_implemented: 5
+  stories_validated: 0
+  stories_pushed: 0
+  completion_time: "2026-03-01T02:30:00Z"
+
+  # Wave 1 Complete
+  wave_1_status: "COMPLETE"
+  story_2_1_status: "READY_FOR_QA"
+  story_2_1_files: 7
+  story_2_1_tests: 4
+
+  # Wave 2 Complete
+  wave_2_status: "COMPLETE"
+  story_2_2_status: "READY_FOR_QA"
+  story_2_2_files: 4
+  story_2_2_tests: 1
+  story_2_3_status: "READY_FOR_QA"
+  story_2_3_files: 3
+  story_2_3_tests: 1
+
+  # Wave 3 Complete
+  wave_3_status: "COMPLETE"
+  story_2_4_status: "READY_FOR_QA"
+  story_2_4_files: 3
+  story_2_4_tests: 1
+  story_2_5_status: "READY_FOR_QA"
+  story_2_5_files: 3
+  story_2_5_tests: 1
+
+  # Summary
+  total_files_created: 23
+  total_test_files: 5
+  total_lines_of_code: "~3500"
+  epic_status: "IMPLEMENTATION_COMPLETE"

@@ -27,7 +27,9 @@
       "Bash(/c/Users/Samsung/zapccrm/docs/runbooks/rollback-multi-tenant.md:*)",
       "Bash(/c/Users/Samsung/zapccrm/supabase/migrations/20260301030000_migrate_data_to_organizations.sql:*)",
       "Bash(npm:*)",
-      "Bash(wsl bash:*)"
+      "Bash(wsl bash:*)",
+      "Bash(wc:*)",
+      "Bash(node:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

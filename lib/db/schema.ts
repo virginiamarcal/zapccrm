@@ -173,6 +173,46 @@ export interface Database {
 }
 
 // ============================================================================
+// Contacts (Story 2.2 - WhatsApp Integration)
+// ============================================================================
+
+export interface Contact {
+  id: UUID;
+  organization_id: UUID;
+  phone?: string;
+  email?: string;
+  name?: string;
+  whatsapp_id?: string; // WhatsApp contact identifier
+  last_contact_date?: Timestamp;
+  tags: string[]; // e.g., ['whatsapp_active']
+  metadata?: Record<string, any>;
+  created_at: Timestamp;
+  updated_at: Timestamp;
+}
+
+export type CreateContactInput = Omit<Contact, 'id' | 'created_at' | 'updated_at'>;
+export type UpdateContactInput = Partial<Omit<Contact, 'id' | 'organization_id' | 'created_at' | 'updated_at'>>;
+
+// ============================================================================
+// Activities (Story 2.3 - WhatsApp Timeline)
+// ============================================================================
+
+export interface Activity {
+  id: UUID;
+  organization_id: UUID;
+  contact_id: UUID;
+  activity_type: 'whatsapp_message' | 'email' | 'call' | 'note';
+  content: string;
+  direction?: 'inbound' | 'outbound'; // For messages
+  metadata?: Record<string, any>;
+  created_at: Timestamp;
+  updated_at: Timestamp;
+}
+
+export type CreateActivityInput = Omit<Activity, 'id' | 'created_at' | 'updated_at'>;
+export type UpdateActivityInput = Partial<Omit<Activity, 'id' | 'organization_id' | 'contact_id' | 'created_at' | 'updated_at'>>;
+
+// ============================================================================
 // Helper Types
 // ============================================================================
 
@@ -194,4 +234,9 @@ export type WorkspaceWithOrganization = Workspace & {
  * - Added AuditLog interface for compliance logging (Story 1.2)
  * - Added is_org_member(), is_org_admin(), get_user_organizations() functions (Story 1.2)
  * - Updated Database type definitions with RLS helpers
+ *
+ * 2026-03-01 (@dev Dex) — Story 2.1
+ * - Added Contact interface for WhatsApp contact sync (Story 2.2)
+ * - Added Activity interface for timeline tracking (Story 2.3)
+ * - Added bridge-related types for sync operations
  */
